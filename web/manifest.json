@@ -1,11 +1,11 @@
 {
-    "name": "kishoop",
-    "short_name": "kishoop",
+    "name": "Ki-Shoop",
+    "short_name": "Ki-Shoop",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "Application for the movile devices class.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
