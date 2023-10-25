@@ -43,13 +43,15 @@ class _HomeScreenState extends State<HomeScreen> {
         final jsonData = jsonDecode(response.body);
         if (kDebugMode) {
           cars = List<Car>.from(
-            jsonData.map((car) => Car(
-                  id: car['id'],
-                  make: car['make'],
-                  model: car['model'],
-                  year: car['year'],
-                  type: car['type'],
-                )),
+            jsonData.map(
+              (car) => Car(
+                id: car['id'],
+                make: car['make'],
+                model: car['model'],
+                year: car['year'],
+                type: car['type'],
+              ),
+            ),
           );
         }
       } else {
@@ -69,6 +71,15 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        title: const Text(
+          "Prestige Innovations",
+          style: TextStyle(color: Colors.white),
+        ),
+        centerTitle: true,
+        backgroundColor: Colors.orange[400]!,
+      ),
       body: cars.isEmpty
           ? const Center(
               child: CircularProgressIndicator(
@@ -79,8 +90,9 @@ class _HomeScreenState extends State<HomeScreen> {
           : ListView.builder(
               itemCount: cars.length,
               itemBuilder: (context, index) {
+                final car = cars[index];
                 return CarListItem(
-                  car: cars[index],
+                  car: car,
                 );
               },
             ),

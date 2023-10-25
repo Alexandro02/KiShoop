@@ -83,12 +83,7 @@ class _PickupScreenState extends State<PickupScreen> {
               Button(
                 buttonText: "Continue",
                 buttonColor: Colors.teal[400]!,
-                onTap: SummaryScreen(
-                  imageForTshirt: widget.imageForTshirt,
-                  typeOfTshirt: widget.typeOfTshirt,
-                  totalCost: widget.totalCost,
-                  pickUpDate: deliveryDate,
-                ),
+                onTap: const SummaryScreen(),
                 buttonSizeHeight: 40,
                 buttonSizeWidth: 150,
               ),

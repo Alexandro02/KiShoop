@@ -1,10 +1,19 @@
 // ignore_for_file: avoid_print
 import 'package:flutter/material.dart';
+import 'package:kishoop/models/Car.dart';
 import 'package:kishoop/screens/home_screen.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(
-    const MainApp(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => CarProvider(),
+        ),
+      ],
+      child: const MainApp(),
+    ),
   );
 }
 
@@ -15,18 +24,10 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        appBar: AppBar(
-          title: const Text(
-            "Prestige Innovations",
-            style: TextStyle(color: Colors.white),
-          ),
-          centerTitle: true,
-          backgroundColor: Colors.orange[400]!,
-        ),
-        body: const HomeScreen(),
+        body: HomeScreen(),
       ),
     );
   }

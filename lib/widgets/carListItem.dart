@@ -1,5 +1,9 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:kishoop/models/Car.dart';
+import 'package:kishoop/screens/summary_screen.dart';
+import 'package:provider/provider.dart';
 
 class CarListItem extends StatelessWidget {
   final Car car;
@@ -11,24 +15,35 @@ class CarListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // final carProvider = Provider.of<CarProvider>(context).cars;
+
     return Container(
-      decoration: const BoxDecoration(
-        color: Colors.teal,
+      decoration: BoxDecoration(
+        color: Colors.teal[300],
       ),
       padding: const EdgeInsets.all(14.0),
-      margin: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 5.0),
+      margin: const EdgeInsets.symmetric(
+        vertical: 4.0,
+        horizontal: 5.0,
+      ),
       child: Row(
         children: [
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  'Make: ${car.make}',
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                    fontSize: 16,
+                Padding(
+                  padding: const EdgeInsets.only(
+                    top: 8.0,
+                    bottom: 8.0,
+                  ),
+                  child: Text(
+                    'Make: ${car.make}',
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      fontSize: 16,
+                    ),
                   ),
                 ),
                 Text(
@@ -57,8 +72,20 @@ class CarListItem extends StatelessWidget {
           ),
           ElevatedButton(
             onPressed: () {
-              // Handle button click here
+              final carProvider = Provider.of<CarProvider>(
+                context,
+                listen: false,
+              );
+              carProvider.addCar(car);
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => const SummaryScreen(),
+                ),
+              );
             },
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all<Color>(Colors.amber),
+            ),
             child: const Text("Buy!"),
           ),
         ],
