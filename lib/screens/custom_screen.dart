@@ -90,7 +90,7 @@ class _CustomScreenState extends State<CustomScreen> {
                 Button(
                   buttonText: "Continue",
                   buttonColor: Colors.teal[400]!,
-                  pageToNav: PickupScreen(
+                  onTap: PickupScreen(
                     imageForTshirt: selectedItem,
                     totalCost: widget.totalCost,
                     typeOfTshirt: widget.typeOfTshirt,

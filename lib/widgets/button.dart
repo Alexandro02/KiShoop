@@ -1,17 +1,19 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:kishoop/screens/home_screen.dart';
 
 class Button extends StatelessWidget {
   final String buttonText;
-  final Widget pageToNav;
+  Widget onTap;
   final Color buttonColor;
   final double buttonSizeHeight;
   final double buttonSizeWidth;
 
-  const Button({
+  Button({
     super.key,
     required this.buttonText,
-    this.pageToNav = const HomeScreen(),
+    this.onTap = const HomeScreen(),
     required this.buttonColor,
     required this.buttonSizeHeight,
     required this.buttonSizeWidth,
@@ -23,7 +25,7 @@ class Button extends StatelessWidget {
       // Navigation
       onPressed: () => Navigator.of(context).push(
         MaterialPageRoute(
-          builder: (context) => pageToNav,
+          builder: (context) => onTap,
         ),
       ),
       // Button Styles

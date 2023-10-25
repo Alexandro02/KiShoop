@@ -94,7 +94,7 @@ class _SummaryScreenState extends State<SummaryScreen> {
                   buttonColor: Colors.teal[400]!,
                   buttonSizeHeight: 40,
                   buttonSizeWidth: 140,
-                  pageToNav: const HomeScreen(),
+                  onTap: const HomeScreen(),
                 ),
               ],
             ),
