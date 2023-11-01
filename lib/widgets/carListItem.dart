@@ -67,12 +67,12 @@ class CarListItem extends StatelessWidget {
               ],
             ),
           ),
+          // Add cart to
           ElevatedButton(
             onPressed: () {
               final carProvider =
                   Provider.of<CarProvider>(context, listen: false);
               carProvider.addToCart(car);
-              print(car.make);
             },
             style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all<Color>(
