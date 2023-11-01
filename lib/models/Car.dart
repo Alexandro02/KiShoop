@@ -1,4 +1,4 @@
-// ignore_for_file: file_names, unused_field
+// ignore_for_file: file_names, unused_field, avoid_print
 
 import 'package:flutter/foundation.dart';
 
@@ -27,9 +27,28 @@ class CarProvider extends ChangeNotifier {
 
   List<Car> cars = [];
 
-  void addCar(Car car) {
-    cars.clear();
+  final List _shopItems = [];
+
+  // Getter to get the items in the cart.
+  List<Car> get cartItems => cars;
+
+  // add item to cart
+  addCarToCart(Car car) {
+    // cars.clear();
     cars.add(car);
+    print(cars.length);
+    notifyListeners();
+  }
+
+  // remove item from cart.
+  removeCarFromCart(int index) {
+    cars.removeAt(index);
+    notifyListeners();
+  }
+
+  // Clear the cart.
+  resetCarCart() {
+    cars.clear();
     notifyListeners();
   }
 

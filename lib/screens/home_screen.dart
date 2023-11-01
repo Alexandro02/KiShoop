@@ -6,9 +6,11 @@ import 'package:flutter/material.dart';
 
 // For API connections.
 import 'package:http/http.dart' as http;
+import 'package:kishoop/screens/cart_page.dart';
 import 'dart:convert';
 
 import 'package:kishoop/widgets/CarListItem.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({
@@ -25,10 +27,10 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    // Call getTypes only if the List of cars is empty.
     getTypes();
   }
 
+  // Fetch data from API
   Future<void> getTypes() async {
     final url = Uri.parse('https://car-data.p.rapidapi.com/cars/');
     final headers = {
@@ -38,7 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     try {
       final response = await http.get(url, headers: headers);
-
+      // If data fetched correctly, then proceed with the car "making"
       if (response.statusCode == 200) {
         final jsonData = jsonDecode(response.body);
         if (kDebugMode) {
@@ -96,6 +98,24 @@ class _HomeScreenState extends State<HomeScreen> {
                 );
               },
             ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.black,
+        onPressed: () {
+          // Add the selected car to the cart
+          if (cars.isNotEmpty) {
+            Provider.of<CarProvider>(context, listen: false)
+                .addCarToCart(cars[0]);
+          }
+          // Navigate to the cart page.
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const CartPage(),
+            ),
+          );
+        },
+        child: const Icon(Icons.shopping_bag),
+      ),
     );
   }
 }

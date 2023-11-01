@@ -1,9 +1,8 @@
-// ignore_for_file: file_names
+// ignore_for_file: file_names, avoid_print
 
-import 'package:flutter/material.dart';
 import 'package:kishoop/models/Car.dart';
-import 'package:kishoop/screens/summary_screen.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter/material.dart';
 
 class CarListItem extends StatelessWidget {
   final Car car;
@@ -15,8 +14,6 @@ class CarListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final carProvider = Provider.of<CarProvider>(context).cars;
-
     return Container(
       decoration: BoxDecoration(
         color: Colors.teal[300],
@@ -72,21 +69,17 @@ class CarListItem extends StatelessWidget {
           ),
           ElevatedButton(
             onPressed: () {
-              final carProvider = Provider.of<CarProvider>(
-                context,
-                listen: false,
-              );
-              carProvider.addCar(car);
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => const SummaryScreen(),
-                ),
-              );
+              final carProvider =
+                  Provider.of<CarProvider>(context, listen: false);
+              carProvider.addCarToCart(car);
+              print(car.make);
             },
             style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all<Color>(Colors.amber),
+              backgroundColor: MaterialStateProperty.all<Color>(
+                Colors.amber,
+              ),
             ),
-            child: const Text("Buy!"),
+            child: const Text("Add to cart"),
           ),
         ],
       ),

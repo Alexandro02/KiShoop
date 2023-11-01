@@ -18,6 +18,7 @@ class SentOrder extends StatelessWidget {
           Center(
             child: Lottie.asset(
               'assets/OrderSent.json',
+              repeat: false,
             ),
           ),
           const Text(
