@@ -71,7 +71,7 @@ class CarListItem extends StatelessWidget {
             onPressed: () {
               final carProvider =
                   Provider.of<CarProvider>(context, listen: false);
-              carProvider.addCarToCart(car);
+              carProvider.addToCart(car);
               print(car.make);
             },
             style: ButtonStyle(

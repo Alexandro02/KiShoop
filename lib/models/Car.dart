@@ -26,29 +26,23 @@ class CarProvider extends ChangeNotifier {
   String _type = "";
 
   List<Car> cars = [];
+  List<Car> cartItems = [];
 
-  final List _shopItems = [];
-
-  // Getter to get the items in the cart.
-  List<Car> get cartItems => cars;
-
-  // add item to cart
-  addCarToCart(Car car) {
-    // cars.clear();
-    cars.add(car);
-    print(cars.length);
+  // Add a car to the cart
+  addToCart(Car car) {
+    cartItems.add(car);
     notifyListeners();
   }
 
-  // remove item from cart.
-  removeCarFromCart(int index) {
-    cars.removeAt(index);
+  // Remove a car from the cart
+  removeFromCart(Car car) {
+    cartItems.remove(car);
     notifyListeners();
   }
 
-  // Clear the cart.
-  resetCarCart() {
-    cars.clear();
+  // Clear the cart
+  clearCart() {
+    cartItems.clear();
     notifyListeners();
   }
 

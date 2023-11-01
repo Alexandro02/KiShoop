@@ -1,16 +1,14 @@
 // ignore_for_file: library_private_types_in_public_api
 
+import 'package:kishoop/widgets/CarListItem.dart';
 import 'package:flutter/foundation.dart';
 import 'package:kishoop/models/Car.dart';
 import 'package:flutter/material.dart';
 
 // For API connections.
-import 'package:http/http.dart' as http;
 import 'package:kishoop/screens/cart_page.dart';
+import 'package:http/http.dart' as http;
 import 'dart:convert';
-
-import 'package:kishoop/widgets/CarListItem.dart';
-import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({
@@ -101,11 +99,6 @@ class _HomeScreenState extends State<HomeScreen> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.black,
         onPressed: () {
-          // Add the selected car to the cart
-          if (cars.isNotEmpty) {
-            Provider.of<CarProvider>(context, listen: false)
-                .addCarToCart(cars[0]);
-          }
           // Navigate to the cart page.
           Navigator.push(
             context,
